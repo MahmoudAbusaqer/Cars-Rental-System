@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1072.0" style="-fx-background-color: #20120f;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalproject.jp3.cars_rental.rental_carController">
+    <children>
+        <ImageView fitHeight="617.0" fitWidth="1070.0" layoutX="1.0" layoutY="-1.0" opacity="0.4" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-0.319091796875" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="-1.8404541015625">
+            <image>
+                <Image url="@../../../images/pexels-photo-193999.jpeg" />
+            </image>
+        </ImageView>
+        <AnchorPane prefHeight="600.0" prefWidth="216.0" style="-fx-background-color: #f0f7ff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Button fx:id="chooes_Date_Button" alignment="CENTER" contentDisplay="CENTER" layoutY="91.0" mnemonicParsing="false" onAction="#ButtonHandle" prefHeight="50.0" prefWidth="216.0" stylesheets="@style.css" text="Choose Date" textAlignment="CENTER">
+               <padding>
+                  <Insets left="30.0" />
+               </padding></Button>
+                <Button fx:id="available_Cars_Button" alignment="CENTER" contentDisplay="CENTER" layoutY="141.0" mnemonicParsing="false" onAction="#ButtonHandle" prefHeight="50.0" prefWidth="216.0" stylesheets="@style.css" text="Available Cars" textAlignment="CENTER">
+               <padding>
+                  <Insets left="30.0" />
+               </padding></Button>
+                <Button fx:id="view_Bookings_Button" alignment="CENTER" contentDisplay="CENTER" layoutY="289.0" mnemonicParsing="false" onAction="#ButtonHandle" prefHeight="50.0" prefWidth="216.0" stylesheets="@style.css" text="View Bookings" textAlignment="CENTER">
+               <padding>
+                  <Insets left="30.0" />
+               </padding></Button>
+                <Button fx:id="car_Information_Button" alignment="CENTER" contentDisplay="CENTER" layoutY="191.0" mnemonicParsing="false" onAction="#ButtonHandle" prefHeight="50.0" prefWidth="216.0" stylesheets="@style.css" text="Car Information" textAlignment="CENTER">
+               <padding>
+                  <Insets left="30.0" />
+               </padding></Button>
+                <Button fx:id="booking_Button" alignment="CENTER" contentDisplay="CENTER" layoutY="239.0" mnemonicParsing="false" onAction="#ButtonHandle" prefHeight="50.0" prefWidth="216.0" stylesheets="@style.css" text="Booking" textAlignment="CENTER">
+               <padding>
+                  <Insets left="30.0" />
+               </padding></Button>
+            </children>
+            <effect>
+                <DropShadow />
+            </effect>
+        </AnchorPane>
+        <AnchorPane layoutY="-8.0" prefHeight="461.0" prefWidth="37.0" style="-fx-background-color: #fefefe;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <effect>
+                <DropShadow />
+            </effect>
+            <children>
+                <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="9.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/calendar.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="9.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/av-car.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="9.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/car.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="9.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/booking.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="9.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/view.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="216.0" layoutY="-1.0" prefHeight="602.0" prefWidth="857.0">
+            <effect>
+                <DropShadow />
+            </effect>
+            <children>
+                <Pane fx:id="car_information_pane" layoutY="-2.0" prefHeight="602.0" prefWidth="857.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="269.0" layoutY="63.0" text="Car Information" textFill="#f8ecec">
+                     <font>
+                        <Font name="Arial" size="46.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="114.0" layoutY="130.0" text="Please fill all the fields to complete the booking" textAlignment="CENTER" textFill="#eeeded">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <GridPane alignment="CENTER" layoutX="100.0" layoutY="211.0" prefHeight="236.0" prefWidth="300.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="150.0" text="Car ID:" textAlignment="CENTER" textFill="#f5f2f2">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font></Label>
+                        <Label fx:id="car_id" prefHeight="20.0" prefWidth="176.0" textAlignment="CENTER" textFill="#f5f2f2" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="183.0" text="Brand:" textFill="#f5f2f2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font></Label>
+                        <Label fx:id="brand" prefHeight="20.0" prefWidth="169.0" textAlignment="CENTER" textFill="#f5f2f2" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="176.0" text="Number of Seats:" textFill="#f5f2f2" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font></Label>
+                        <Label fx:id="num_of_seats" prefHeight="20.0" prefWidth="188.0" textAlignment="CENTER" textFill="#f5f2f2" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="167.0" text="speed:" textFill="#f5f2f2" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font></Label>
+                        <Label fx:id="speed" prefHeight="20.0" prefWidth="192.0" textAlignment="CENTER" textFill="#f5f2f2" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                     </children>
+                  </GridPane>
+                  <GridPane layoutX="456.0" layoutY="211.0" prefHeight="236.0" prefWidth="300.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="169.0" text="Model:" textFill="#f5f2f2">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font></Label>
+                        <Label fx:id="model" textAlignment="CENTER" textFill="#f5f2f2" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="175.0" text="Number of Doors:" textFill="#f5f2f2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font></Label>
+                        <Label fx:id="num_of_doors" textAlignment="CENTER" textFill="#f5f2f2" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="166.0" text="Color:" textFill="#f5f2f2" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font></Label>
+                        <Label fx:id="color" textAlignment="CENTER" textFill="#f5f2f2" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="166.0" text="price per Day:" textFill="#f5f2f2" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font></Label>
+                        <Label fx:id="price_per_day" textAlignment="CENTER" textFill="#f5f2f2" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <Button id="nextPageButton" fx:id="Go_to_Booking_Button" layoutX="630.0" layoutY="517.0" mnemonicParsing="false" onAction="#Go_to_Booking_Button_Handle" stylesheets="@style.css" text="Go to Booking">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button id="nextPageButton" fx:id="Go_back_to_change_the_car_Button" layoutX="55.0" layoutY="517.0" mnemonicParsing="false" onAction="#Go_back_to_change_the_Car_Button_Handle" stylesheets="@style.css" text="Go back to change the Car">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+                <Pane fx:id="chooes_date_pane" prefHeight="602.0" prefWidth="857.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="301.0" layoutY="89.0" text="Rental Cars" textFill="#f8ecec">
+                     <font>
+                        <Font name="Arial" size="48.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="190.0" layoutY="162.0" text="Choose the Date that suits you" textAlignment="CENTER" textFill="#eeeded">
+                     <font>
+                        <Font name="System Bold" size="33.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="124.0" layoutY="257.0" text="Pick-up Date" textFill="#ffb7b7">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="364.0" layoutY="257.0" text="Return Date" textFill="#ffb7b7">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="pickUp_date" blendMode="HARD_LIGHT" layoutX="103.0" layoutY="332.0" promptText="MM/DD/YYYY" />
+                  <DatePicker fx:id="return_date" blendMode="HARD_LIGHT" layoutX="340.0" layoutY="332.0" promptText="MM/DD/YYYY" />
+                  <Button id="nextPageButton" fx:id="search_Cars_Button" layoutX="368.0" layoutY="469.0" mnemonicParsing="false" onAction="#search_Cars_Button_Handle" stylesheets="@style.css" text="Search for Cars">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="290.0" layoutY="429.0" text="Click Search to continue the booking process" textFill="#a4c97c">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="601.0" layoutY="257.0" text="Total Rent Days" textFill="#ffb7b7">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="total_Rent_Days" layoutX="609.0" layoutY="332.0" />
+               </children>
+            </Pane>
+                <Pane fx:id="booking_pane" layoutX="1.0" prefHeight="602.0" prefWidth="857.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="345.0" layoutY="64.0" text="Booking" textFill="#f8ecec">
+                     <font>
+                        <Font name="Arial" size="46.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="115.0" layoutY="130.0" text="Please fill all the fields to complete the booking" textAlignment="CENTER" textFill="#eeeded">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <GridPane alignment="CENTER" layoutX="100.0" layoutY="204.0" prefHeight="236.0" prefWidth="300.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="159.0" text="Customer ID:" textAlignment="CENTER" textFill="#f5f2f2">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="156.0" text="First Name:" textAlignment="CENTER" textFill="#f5f2f2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="145.0" text="Last Name:" textAlignment="CENTER" textFill="#f5f2f2" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="155.0" text="Gender:" textFill="#f5f2f2" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <RadioButton fx:id="male" mnemonicParsing="false" text="Male" textFill="#eeeded">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="femal" mnemonicParsing="false" text="Femal" textFill="#eeeded">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></RadioButton>
+                           </children>
+                        </HBox>
+                        <TextField fx:id="customer_Id" GridPane.columnIndex="1" />
+                        <TextField fx:id="first_Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="last_Name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <GridPane layoutX="456.0" layoutY="204.0" prefHeight="236.0" prefWidth="300.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="164.0" text="Address:" textFill="#f5f2f2">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="169.0" text="Phone:" textFill="#f5f2f2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="182.0" text="Total Price:" textFill="#f5f2f2" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="address" GridPane.columnIndex="1" />
+                        <TextField fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="total_Price" prefHeight="20.0" prefWidth="178.0" textAlignment="CENTER" textFill="#f5f2f2" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <Button id="nextPageButton" fx:id="go_Back_Car_Information_Button" layoutX="126.0" layoutY="520.0" mnemonicParsing="false" onAction="#go_Back_Car_Information_Button_Handle" stylesheets="@style.css" text="Go Back to Car Information">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button id="nextPageButton" fx:id="Booking_Button" layoutX="582.0" layoutY="520.0" mnemonicParsing="false" onAction="#booking_Button_Handle" stylesheets="@style.css" text="Booking">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children></Pane>
+                <Pane fx:id="available_cars_pane" layoutX="20.0" layoutY="20.0" prefHeight="602.0" prefWidth="857.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="available_Cars_Table" layoutX="560.0" layoutY="112.0" prefHeight="437.0" prefWidth="189.0">
+                    <columns>
+                      <TableColumn fx:id="tc_Number" prefWidth="76.0" text="Number" />
+                      <TableColumn fx:id="tc_Car_Id" prefWidth="112.0" text="Car ID" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="287.0" layoutY="33.0" text="Available Cars" textFill="#f8ecec">
+                     <font>
+                        <Font name="Arial" size="46.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="105.0" layoutY="151.0" text="Here you can find all the cars that&#10; available in date that choose" textAlignment="CENTER" textFill="#eeeded">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Button id="nextPageButton" fx:id="Go_back_to_change_the_Date_Button" layoutX="85.0" layoutY="478.0" mnemonicParsing="false" onAction="#Go_back_to_change_the_Date_Button_Handle" stylesheets="@style.css" text="Go back to change the Date">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button id="nextPageButton" fx:id="Go_to_Car_Informaion_Button" layoutX="376.0" layoutY="478.0" mnemonicParsing="false" onAction="#Go_to_Car_Informaion_Button_Handle" stylesheets="@style.css" text="Go to Car Informaion">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="188.0" layoutY="268.0" text="Click on the car that you want to view" textFill="#baf8b4">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="view_Bookings_Pane" prefHeight="602.0" prefWidth="857.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="271.0" layoutY="49.0" text="View Bookings" textFill="#f8ecec">
+                     <font>
+                        <Font name="Arial" size="48.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="view_Bookings_Table" layoutX="90.0" layoutY="131.0" prefHeight="414.0" prefWidth="676.0">
+                    <columns>
+                      <TableColumn fx:id="tc_VB_Id" prefWidth="63.0" text="ID" />
+                      <TableColumn fx:id="tc_VB_customerId" prefWidth="87.0" text="Customer ID" />
+                        <TableColumn fx:id="tc_VB_carId" prefWidth="83.0" text="Car ID" />
+                        <TableColumn fx:id="tc_VB_pickupDate" prefWidth="99.0" text="picked Up Date" />
+                        <TableColumn fx:id="tc_VB_returnDate" prefWidth="92.0" text="Return Date" />
+                        <TableColumn fx:id="tc_VB_totalDaysRent" prefWidth="99.0" text="Total Days Rent" />
+                        <TableColumn fx:id="tc_VB_totalPrice" prefWidth="75.0" text="Total Price" />
+                        <TableColumn fx:id="tc_VB_employeeId" prefWidth="77.0" text="Employee ID" />
+                    </columns>
+                  </TableView>
+               </children>
+            </Pane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
