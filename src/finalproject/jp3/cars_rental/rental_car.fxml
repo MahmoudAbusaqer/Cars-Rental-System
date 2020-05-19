@@ -14,69 +14,144 @@
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1072.0" style="-fx-background-color: #20120f;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalproject.jp3.cars_rental.rental_carController">
     <children>
-        <ImageView fitHeight="617.0" fitWidth="1070.0" layoutX="1.0" layoutY="-1.0" opacity="0.4" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-0.319091796875" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="-1.8404541015625">
+        <ImageView fx:id="background_Image" fitHeight="617.0" fitWidth="1070.0" layoutX="1.0" layoutY="-1.0" opacity="0.4" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-1.1595458984375" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="-1.8404541015625">
             <image>
                 <Image url="@../../../images/pexels-photo-193999.jpeg" />
             </image>
         </ImageView>
         <AnchorPane prefHeight="600.0" prefWidth="216.0" style="-fx-background-color: #f0f7ff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Button fx:id="chooes_Date_Button" alignment="CENTER" contentDisplay="CENTER" layoutY="91.0" mnemonicParsing="false" onAction="#ButtonHandle" prefHeight="50.0" prefWidth="216.0" stylesheets="@style.css" text="Choose Date" textAlignment="CENTER">
-               <padding>
-                  <Insets left="30.0" />
-               </padding></Button>
-                <Button fx:id="available_Cars_Button" alignment="CENTER" contentDisplay="CENTER" layoutY="141.0" mnemonicParsing="false" onAction="#ButtonHandle" prefHeight="50.0" prefWidth="216.0" stylesheets="@style.css" text="Available Cars" textAlignment="CENTER">
-               <padding>
-                  <Insets left="30.0" />
-               </padding></Button>
-                <Button fx:id="view_Bookings_Button" alignment="CENTER" contentDisplay="CENTER" layoutY="289.0" mnemonicParsing="false" onAction="#ButtonHandle" prefHeight="50.0" prefWidth="216.0" stylesheets="@style.css" text="View Bookings" textAlignment="CENTER">
-               <padding>
-                  <Insets left="30.0" />
-               </padding></Button>
-                <Button fx:id="car_Information_Button" alignment="CENTER" contentDisplay="CENTER" layoutY="191.0" mnemonicParsing="false" onAction="#ButtonHandle" prefHeight="50.0" prefWidth="216.0" stylesheets="@style.css" text="Car Information" textAlignment="CENTER">
-               <padding>
-                  <Insets left="30.0" />
-               </padding></Button>
-                <Button fx:id="booking_Button" alignment="CENTER" contentDisplay="CENTER" layoutY="239.0" mnemonicParsing="false" onAction="#ButtonHandle" prefHeight="50.0" prefWidth="216.0" stylesheets="@style.css" text="Booking" textAlignment="CENTER">
-               <padding>
-                  <Insets left="30.0" />
-               </padding></Button>
+            <AnchorPane prefHeight="600.0" prefWidth="51.0" style="-fx-background-color: #ffffff;" />
+            <HBox id="hboxButton" fx:id="login_hbox" alignment="CENTER" layoutX="-3.0" layoutY="92.0" onMouseClicked="#hBox_Handle" prefHeight="50.0" prefWidth="216.0" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="51.0">
+                     <children>
+                        <ImageView fitHeight="21.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/login.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="165.0" text="Log In">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox id="hboxButton" fx:id="chooes_Date_hbox" alignment="CENTER" layoutY="142.0" onMouseClicked="#hBox_Handle" prefHeight="50.0" prefWidth="216.0" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="66.0">
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/calendar.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="180.0" text="Choose Date">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox id="hboxButton" fx:id="available_Cars_hbox" alignment="CENTER_RIGHT" layoutY="192.0" onMouseClicked="#hBox_Handle" prefHeight="50.0" prefWidth="216.0" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="61.0">
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/av-car.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="175.0" text="Available Cars">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox id="hboxButton" fx:id="car_Information_hbox" alignment="CENTER_RIGHT" layoutY="242.0" onMouseClicked="#hBox_Handle" prefHeight="50.0" prefWidth="216.0" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="66.0">
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/car.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="180.0" text="Car Information">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox id="hboxButton" fx:id="booking_hbox" alignment="CENTER_RIGHT" layoutY="292.0" onMouseClicked="#hBox_Handle" prefHeight="50.0" prefWidth="215.0" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="67.0">
+                     <children>
+                            <ImageView fitHeight="20.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../../../images/booking.png" />
+                                </image>
+                            </ImageView>
+                     </children>
+                  </HBox>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="179.0" text="Booking">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox id="hboxButton" fx:id="view_booking_hbox" alignment="CENTER_RIGHT" layoutY="342.0" onMouseClicked="#hBox_Handle" prefHeight="50.0" prefWidth="215.0" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="82.0" prefWidth="69.0">
+                     <children>
+                            <ImageView fitHeight="20.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../../../images/view.png" />
+                                </image>
+                            </ImageView>
+                     </children>
+                  </HBox>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="180.0" text="View Booking (Admin Only)">
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox id="hboxButton" fx:id="add_Car_hbox" alignment="CENTER_RIGHT" layoutY="392.0" onMouseClicked="#hBox_Handle" prefHeight="50.0" prefWidth="215.0" stylesheets="@style.css">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="82.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/addCar.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="180.0" text="Add Car (Admin Only)">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
             </children>
             <effect>
                 <DropShadow />
             </effect>
-        </AnchorPane>
-        <AnchorPane layoutY="-8.0" prefHeight="461.0" prefWidth="37.0" style="-fx-background-color: #fefefe;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <effect>
-                <DropShadow />
-            </effect>
-            <children>
-                <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="9.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../images/calendar.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="9.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../images/av-car.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="9.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../images/car.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="9.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../images/booking.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="9.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../images/view.png" />
-                    </image>
-                </ImageView>
-            </children>
         </AnchorPane>
         <AnchorPane layoutX="216.0" layoutY="-1.0" prefHeight="602.0" prefWidth="857.0">
             <effect>
@@ -241,6 +316,69 @@
                   <TextField fx:id="total_Rent_Days" layoutX="609.0" layoutY="332.0" />
                </children>
             </Pane>
+            <Pane fx:id="view_Bookings_Pane" prefHeight="602.0" prefWidth="857.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="271.0" layoutY="25.0" text="View Bookings" textFill="#f8ecec">
+                     <font>
+                        <Font name="Arial" size="48.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="view_Bookings_Table" layoutX="252.0" layoutY="94.0" prefHeight="414.0" prefWidth="600.0">
+                    <columns>
+                      <TableColumn fx:id="tc_VB_Id" prefWidth="63.0" text="ID" />
+                      <TableColumn fx:id="tc_VB_customerId" prefWidth="87.0" text="Customer ID" />
+                        <TableColumn fx:id="tc_VB_carId" prefWidth="83.0" text="Car ID" />
+                        <TableColumn fx:id="tc_VB_pickupDate" prefWidth="99.0" text="picked Up Date" />
+                        <TableColumn fx:id="tc_VB_returnDate" prefWidth="92.0" text="Return Date" />
+                        <TableColumn fx:id="tc_VB_totalDaysRent" prefWidth="99.0" text="Total Days Rent" />
+                        <TableColumn fx:id="tc_VB_totalPrice" prefWidth="75.0" text="Total Price" />
+                    </columns>
+                  </TableView>
+                  <GridPane layoutX="4.0" layoutY="95.0" prefHeight="414.0" prefWidth="235.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="109.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="126.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="123.0" text="Customer ID:" textFill="#eeebeb" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="191.0" text="Car ID:" textFill="#eeebeb" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="126.0" text="Picked Up Date:" textFill="#eeebeb" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="141.0" text="Return Date:" textFill="#eeebeb" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="126.0" text="Total Days Rent:" textFill="#eeebeb" GridPane.rowIndex="5" />
+                        <TextField fx:id="customer_id_update" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="car_id_update" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="total_days_rent_update" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <DatePicker fx:id="picked_up_date_update" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <DatePicker fx:id="return_date_update" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="123.0" text="ID:" textFill="#eeebeb" />
+                        <Label fx:id="id_update" contentDisplay="CENTER" prefHeight="17.0" prefWidth="123.0" textFill="#eeebeb" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Button id="nextPageButton" fx:id="update_Button" layoutX="271.0" layoutY="533.0" mnemonicParsing="false" onAction="#update_Button_Handle" stylesheets="@style.css" text="Update">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button id="nextPageButton" fx:id="delete_Button" layoutX="521.0" layoutY="533.0" mnemonicParsing="false" onAction="#delete_Button_Handle" stylesheets="@style.css" text="Delete">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button id="signOut" fx:id="signOut_Button" layoutX="730.0" layoutY="549.0" mnemonicParsing="false" onAction="#signOut_Button_Handle" stylesheets="@style.css" text="Sign Out">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
                 <Pane fx:id="booking_pane" layoutX="1.0" prefHeight="602.0" prefWidth="857.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="345.0" layoutY="64.0" text="Booking" textFill="#f8ecec">
@@ -349,7 +487,148 @@
                      </font>
                   </Button>
                </children></Pane>
-                <Pane fx:id="available_cars_pane" layoutX="20.0" layoutY="20.0" prefHeight="602.0" prefWidth="857.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="add_Car_Pane" prefHeight="602.0" prefWidth="857.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="343.0" layoutY="55.0" text="Add Car" textFill="#f8ecec">
+                     <font>
+                        <Font name="Arial" size="46.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="178.0" layoutY="127.0" text="Please fill all the fields to add new Car" textAlignment="CENTER" textFill="#eeeded">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <GridPane alignment="CENTER" layoutX="60.0" layoutY="226.0" prefHeight="236.0" prefWidth="300.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="159.0" text="ID:" textAlignment="CENTER" textFill="#f5f2f2">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="156.0" text="Model:" textAlignment="CENTER" textFill="#f5f2f2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="145.0" text="Brand:" textAlignment="CENTER" textFill="#f5f2f2" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="155.0" text="Color:" textFill="#f5f2f2" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="id_addCar" GridPane.columnIndex="1" />
+                        <TextField fx:id="model_addCar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="brand_addCar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="color_addCar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <GridPane layoutX="495.0" layoutY="226.0" prefHeight="236.0" prefWidth="300.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="164.0" text="Number of Doors:" textFill="#f5f2f2">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="169.0" text="Number of Seats:" textFill="#f5f2f2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="182.0" text="Price per Day:" textFill="#f5f2f2" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="number_of_doors_addCar" GridPane.columnIndex="1" />
+                        <TextField fx:id="number_of_seats_addCar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="total_Price1" prefHeight="20.0" prefWidth="178.0" textAlignment="CENTER" textFill="#f5f2f2" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="182.0" text="Speed:" textFill="#f5f2f2" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="price_per_day_addCar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="speed_addCar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <Button id="nextPageButton" fx:id="add_newCar_Button" layoutX="410.0" layoutY="508.0" mnemonicParsing="false" onAction="#add_newCar_Button_Handle" stylesheets="@style.css" text="Add">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button id="signOut" fx:id="signOut_Button" layoutX="731.0" layoutY="548.0" mnemonicParsing="false" onAction="#signOut_Button_Handle" stylesheets="@style.css" text="Sign Out">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children></Pane>
+            <Pane fx:id="login_Pane" prefHeight="602.0" prefWidth="857.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="555.0" fitWidth="857.0" layoutY="60.0" opacity="0.4" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/pexels-photo-2896135.jpeg" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane layoutX="507.0" layoutY="85.0" prefHeight="364.0" prefWidth="313.0" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="72.0" layoutY="51.0" prefHeight="27.0" prefWidth="169.0" text="Log in to Cars Rental" textFill="#eeeaea">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="userName" alignment="CENTER" layoutX="32.0" layoutY="105.0" prefHeight="25.0" prefWidth="235.0" promptText="ID" style="-fx-background-color: #6f6f6f;" />
+                        <PasswordField fx:id="password" alignment="CENTER" layoutX="31.0" layoutY="164.0" prefHeight="25.0" prefWidth="235.0" promptText="Password" style="-fx-background-color: #6f6f6f;" />
+                        <Button id="login" fx:id="logIn" layoutX="30.0" layoutY="234.0" mnemonicParsing="false" onAction="#logIn_Button_Handle" opacity="0.8" prefHeight="25.0" prefWidth="235.0" stylesheets="@style.css" text="Log in" textFill="#f8e1e1" />
+                        <Label layoutX="28.0" layoutY="286.0" text="If you are a user please click this button" textFill="#f2efef">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Button id="user" fx:id="user" layoutX="75.0" layoutY="325.0" mnemonicParsing="false" onAction="#user_Button_Handle" opacity="0.65" prefHeight="25.0" prefWidth="149.0" stylesheets="@style.css" text="User" textFill="#f8e1e1" />
+                     </children>
+                  </AnchorPane>
+                  <Label layoutX="105.0" layoutY="242.0" text="Any car you want you can find it here" textFill="#f2efef">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="62.0" layoutY="179.0" prefHeight="63.0" prefWidth="367.0" text="Welcome to Cars Rental" textFill="#e8e6e6">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+                <Pane fx:id="available_cars_pane" layoutX="20.0" layoutY="20.0" prefHeight="602.0" prefWidth="857.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <TableView fx:id="available_Cars_Table" layoutX="560.0" layoutY="112.0" prefHeight="437.0" prefWidth="189.0">
                     <columns>
@@ -382,27 +661,6 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-               </children>
-            </Pane>
-            <Pane fx:id="view_Bookings_Pane" prefHeight="602.0" prefWidth="857.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label layoutX="271.0" layoutY="49.0" text="View Bookings" textFill="#f8ecec">
-                     <font>
-                        <Font name="Arial" size="48.0" />
-                     </font>
-                  </Label>
-                  <TableView fx:id="view_Bookings_Table" layoutX="90.0" layoutY="131.0" prefHeight="414.0" prefWidth="676.0">
-                    <columns>
-                      <TableColumn fx:id="tc_VB_Id" prefWidth="63.0" text="ID" />
-                      <TableColumn fx:id="tc_VB_customerId" prefWidth="87.0" text="Customer ID" />
-                        <TableColumn fx:id="tc_VB_carId" prefWidth="83.0" text="Car ID" />
-                        <TableColumn fx:id="tc_VB_pickupDate" prefWidth="99.0" text="picked Up Date" />
-                        <TableColumn fx:id="tc_VB_returnDate" prefWidth="92.0" text="Return Date" />
-                        <TableColumn fx:id="tc_VB_totalDaysRent" prefWidth="99.0" text="Total Days Rent" />
-                        <TableColumn fx:id="tc_VB_totalPrice" prefWidth="75.0" text="Total Price" />
-                        <TableColumn fx:id="tc_VB_employeeId" prefWidth="77.0" text="Employee ID" />
-                    </columns>
-                  </TableView>
                </children>
             </Pane>
             </children>

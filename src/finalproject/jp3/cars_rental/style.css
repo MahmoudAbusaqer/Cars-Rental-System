@@ -23,7 +23,7 @@ and open the template in the editor.
 }
 #nextPageButton{
     /*-fx-background-color:  #C4105D;*/
-    /*-fx-background-color:  #3474C4;*/
+    /*-fx-background-color:  #3474C4;*/ 
     -fx-background-color:  #b4a996;
 }
 #nextPageButton:hover{
@@ -31,7 +31,39 @@ and open the template in the editor.
     /*-fx-background-color: #657BC4;*/
     -fx-background-color: #c4dff6;
 }
-.button:pressed{
+/*.button:pressed{
     -fx-background-color: #c4dff6;
+}*/
+/*#hboxButton:pressed{
+    -fx-background-color: #c4dff6;
+}*/
+/*#hboxButton:hover{
+    -fx-background-color: #c4dff6;
+}*/
+#background{
+    /*-fx-background-color: #c4dff6;*/
+    -fx-background-color: rgba(0, 0, 0, 0.7);
 }
-
+#signOut{
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #990033;
+    /*-fx-background-color: #ed1c24;*/
+}
+#signOut:hover{
+    -fx-background-color: #fd5c63;
+}
+#login{
+    -fx-background-color: #E45652;
+}
+#user{
+    -fx-background-color: #520099;
+}
+#login:hover{
+    -fx-background-color: #ff4c4c;
+}
+#user:hover{
+    -fx-background-color: #7d3f98;
+}
+/*#availableCars{
+    -fx-background-image: url(images\bc3.jpg);
+}*/

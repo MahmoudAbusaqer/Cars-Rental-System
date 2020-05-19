@@ -61,9 +61,6 @@ public class Booking implements Serializable {
 //    @JoinColumn(name = "car_id", referencedColumnName = "id")
 //    @ManyToOne
     private Integer carId;
-//    @JoinColumn(name = "employee_id", referencedColumnName = "id")
-//    @ManyToOne
-    private Integer employeeId;
 
     public Booking() {
     }
@@ -126,14 +123,6 @@ public class Booking implements Serializable {
 
     public void setCarId(Integer carId) {
         this.carId = carId;
-    }
-
-    public Integer getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
     }
 
 //    @Override

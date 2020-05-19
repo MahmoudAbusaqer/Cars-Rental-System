@@ -83,14 +83,12 @@ public class Employee implements Serializable {
 //    public void setBookingList(List<Booking> bookingList) {
 //        this.bookingList = bookingList;
 //    }
-
 //    @Override
 //    public int hashCode() {
 //        int hash = 0;
 //        hash += (id != null ? id.hashCode() : 0);
 //        return hash;
 //    }
-
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -104,9 +102,9 @@ public class Employee implements Serializable {
         return true;
     }
 
-//    @Override
-//    public String toString() {
-//        return "finalproject.jp3.cars_rental.Employee[ id=" + id + " ]";
-//    }
-    
+    @Override
+    public String toString() {
+        return "id=" + id + " name= " + name + " password=" + employeePassword;
+    }
+
 }

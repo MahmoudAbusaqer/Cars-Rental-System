@@ -46,10 +46,10 @@ public class BookedCars implements Serializable {
     private Date endDate;
 //    @JoinColumn(name = "customer_id", referencedColumnName = "id")
 //    @ManyToOne
-    private Customer customerId;
+    private Integer customerId;
 //    @JoinColumn(name = "car_id", referencedColumnName = "id")
 //    @ManyToOne
-    private Car carId;
+    private Integer carId;
 
     public BookedCars() {
     }
@@ -74,19 +74,19 @@ public class BookedCars implements Serializable {
         this.endDate = endDate;
     }
 
-    public Customer getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Customer customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
-    public Car getCarId() {
+    public Integer getCarId() {
         return carId;
     }
 
-    public void setCarId(Car carId) {
+    public void setCarId(Integer carId) {
         this.carId = carId;
     }
 

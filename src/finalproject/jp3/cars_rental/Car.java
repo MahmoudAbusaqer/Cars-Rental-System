@@ -57,7 +57,7 @@ public class Car implements Serializable {
     private Integer speed;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
 //    @Column(name = "price_per_day")
-    private BigDecimal pricePerDay;
+    private Double pricePerDay;
 //    @OneToMany(mappedBy = "carId")
     private String available;
 //    private List<Booking> bookingList;
@@ -129,11 +129,11 @@ public class Car implements Serializable {
         this.speed = speed;
     }
 
-    public BigDecimal getPricePerDay() {
+    public Double getPricePerDay() {
         return pricePerDay;
     }
 
-    public void setPricePerDay(BigDecimal pricePerDay) {
+    public void setPricePerDay(Double pricePerDay) {
         this.pricePerDay = pricePerDay;
     }
 
