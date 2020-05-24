@@ -5,7 +5,6 @@
  */
 package finalproject.jp3.cars_rental;
 
-
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,8 +20,8 @@ public class FinalProjectJP3Cars_Rental extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Pane paneStudentTableView = FXMLLoader.load(getClass().getResource("rental_car.fxml"));
-        Scene scene = new Scene(paneStudentTableView);
+        Pane rental_carPane = FXMLLoader.load(getClass().getResource("rental_car.fxml"));
+        Scene scene = new Scene(rental_carPane);
         primaryStage.setTitle("Cars Rental System");
         primaryStage.setScene(scene);
         primaryStage.show();

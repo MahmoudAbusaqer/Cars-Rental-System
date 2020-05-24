@@ -7,47 +7,24 @@ and open the template in the editor.
     Created on : May 7, 2020, 4:41:38 PM
     Author     : Mahmoud_abusaqer
 */
-/*.root{
-    -fx-font-family: "Exo", sans-serif;
-    -fx-color: #fff;
-    -fx-background: linear-gradient( #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    -fx-background-size: 400% 400%;
-    -fx-indeterminate-bar-animation-time:2
-}*/
 .button{
     -fx-background-color:  #f0f7ff;
 }
 .button:hover{
-    /*-fx-background-color: #ff0000;*/
     -fx-background-color: #caccd1;
 }
 #nextPageButton{
-    /*-fx-background-color:  #C4105D;*/
-    /*-fx-background-color:  #3474C4;*/ 
     -fx-background-color:  #b4a996;
 }
 #nextPageButton:hover{
-    /*-fx-background-color: #ff0000;*/
-    /*-fx-background-color: #657BC4;*/
     -fx-background-color: #c4dff6;
 }
-/*.button:pressed{
-    -fx-background-color: #c4dff6;
-}*/
-/*#hboxButton:pressed{
-    -fx-background-color: #c4dff6;
-}*/
-/*#hboxButton:hover{
-    -fx-background-color: #c4dff6;
-}*/
 #background{
-    /*-fx-background-color: #c4dff6;*/
     -fx-background-color: rgba(0, 0, 0, 0.7);
 }
 #signOut{
     -fx-text-fill: #ffffff;
     -fx-background-color: #990033;
-    /*-fx-background-color: #ed1c24;*/
 }
 #signOut:hover{
     -fx-background-color: #fd5c63;
@@ -64,6 +41,3 @@ and open the template in the editor.
 #user:hover{
     -fx-background-color: #7d3f98;
 }
-/*#availableCars{
-    -fx-background-image: url(images\bc3.jpg);
-}*/

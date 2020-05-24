@@ -5,6 +5,12 @@
  */
 package finalproject.jp3.cars_rental;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.security.MessageDigest;
@@ -15,13 +21,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,6 +49,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -206,6 +214,11 @@ public class rental_carController implements Initializable {
     Statement statement;
     List<Integer> availableCarsList = new ArrayList<>();
     Boolean isAdmin = false;
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
+    String filepath = "Database Transactions.log";
+    File file = new File(filepath);
+    String array[][] = new String[50][2];
 
     /**
      * Initializes the controller class.
@@ -245,18 +258,28 @@ public class rental_carController implements Initializable {
         view_Bookings_Table.getSelectionModel().selectedItemProperty().addListener(listener -> selectBooking());
         try {
             if (rootPane.isVisible()) {
+                file.createNewFile();
+                beginLog();
                 showAvailableCar();
                 pickUp_date.setValue(LocalDate.now());
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(rental_carController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (SQLException | IOException ex) {
+            ex.getStackTrace();
         }
     }
 
     @FXML
-    private void logIn_Button_Handle(ActionEvent event) throws SQLException {
+    private void logIn_Button_Handle(ActionEvent event) throws SQLException, IOException {
         ResultSet resultSet = this.statement.executeQuery("select * from employee");
         List<Employee> employees = new ArrayList<>();
+        //store into the log file
+        FileOutputStream fos = new FileOutputStream(file, true);
+        OutputStreamWriter osw = new OutputStreamWriter(fos);
+        PrintWriter pr = new PrintWriter(osw);
+        array[0][0] = dtf.format(now);
+        array[0][1] = "A select from table employee was called";
+        pr.println(Arrays.toString(array[0]));
         while (resultSet.next()) {
             Employee employee = new Employee();
             employee.setId(resultSet.getInt("id"));
@@ -292,10 +315,14 @@ public class rental_carController implements Initializable {
             }
         }
         resultSet.close();
+        osw.close();
+        pr.flush();
+        pr.close();
+        ifClosed();
     }
 
     @FXML
-    private void search_Cars_Button_Handle(ActionEvent event) throws SQLException {
+    private void search_Cars_Button_Handle(ActionEvent event) throws SQLException, IOException {
         checkBeforeGoToAVCar();
         chooes_Date_hbox.setStyle("-fx-background-color: none;");
         available_Cars_hbox.setStyle("-fx-background-color: #c4dff6;");
@@ -311,7 +338,7 @@ public class rental_carController implements Initializable {
     }
 
     @FXML
-    private void Go_to_Car_Informaion_Button_Handle(ActionEvent event) throws SQLException {
+    private void Go_to_Car_Informaion_Button_Handle(ActionEvent event) throws SQLException, IOException {
         selectAvailableCars();
         car_Information_hbox.setStyle("-fx-background-color: #c4dff6;");
         available_Cars_hbox.setStyle("-fx-background-color: none;");
@@ -358,13 +385,22 @@ public class rental_carController implements Initializable {
     }
 
     @FXML
-    private void booking_Button_Handle(ActionEvent event) throws SQLException {
-        booking_hbox.setStyle("-fx-background-color: none;");
+    private void booking_Button_Handle(ActionEvent event) throws SQLException, IOException {
         addCustomer_Booking();
+        booking_hbox.setStyle("-fx-background-color: none;");
+        login_hbox.setStyle("-fx-background-color: #c4dff6;");
+        background_Image.setVisible(false);
     }
 
-    private void showAvailableCar() throws SQLException {
+    private void showAvailableCar() throws SQLException, FileNotFoundException, IOException {
         ResultSet resultSet = this.statement.executeQuery("select * from available_cars");
+        //store into the log file
+        FileOutputStream fos = new FileOutputStream(file, true);
+        OutputStreamWriter osw = new OutputStreamWriter(fos);
+        PrintWriter pr = new PrintWriter(osw);
+        array[1][0] = dtf.format(now);
+        array[1][1] = "A select from table available_cars was called";
+        pr.println(Arrays.toString(array[1]));
         available_Cars_Table.getItems().clear();
         int number = 1;
         while (resultSet.next()) {
@@ -376,9 +412,12 @@ public class rental_carController implements Initializable {
             number++;
         }
         resultSet.close();
+        osw.close();
+        pr.flush();
+        pr.close();
     }
 
-    private void addCustomer_Booking() throws SQLException {
+    private void addCustomer_Booking() throws SQLException, FileNotFoundException, IOException {
         if (customer_Id.getText().equals("") || first_Name.getText().equals("") || last_Name.getText().equals("")
                 || (male.getText().equals("") && femal.getText().equals("")) || address.getText().equals("")
                 || phone.getText().equals("") || total_Rent_Days.getText().equals("")) {
@@ -388,6 +427,11 @@ public class rental_carController implements Initializable {
             alert.showAndWait();
         } else {
             //customer 
+            //store into the log file
+            FileOutputStream fos = new FileOutputStream(file, true);
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+            PrintWriter pr = new PrintWriter(osw);
+
             Integer customerId = Integer.parseInt(customer_Id.getText());
             String firstName = first_Name.getText();
             String lastName = last_Name.getText();
@@ -402,34 +446,50 @@ public class rental_carController implements Initializable {
             String addCustomerSql = "insert into customer values(" + customerId + ", '" + firstName + "', '" + lastName
                     + "', '" + customerAddress + "', '" + customerPhone + "', '" + gender + "')";
             int addCustomer = this.statement.executeUpdate(addCustomerSql);
+            array[2][0] = dtf.format(now);
+            array[2][1] = "An insert into customer table was made";
+            pr.println(Arrays.toString(array[2]));
 
             //booking 
             Integer carId = Integer.parseInt(car_id.getText());
-
             Integer totalRentDays = Integer.parseInt(total_Rent_Days.getText());
             Double totalPrice = Double.parseDouble(total_Price.getText());
             String addBookingSql = "insert into booking (customer_id, car_id, pickup_date, return_date, total_days_rent, total_price)"
                     + " values(" + customerId + ", " + carId + ", '" + pickUp_date.getValue()
                     + "', '" + return_date.getValue() + "', " + totalRentDays + ", " + totalPrice + ")";
             int addBooking = this.statement.executeUpdate(addBookingSql);
-
+            array[3][0] = dtf.format(now);
+            array[3][1] = "An insert into booking table was made";
+            pr.println(Arrays.toString(array[3]));
             //updateing car available to no
             String updateCar = "UPDATE car SET available = 'no' WHERE id = " + carId;
             this.statement.executeUpdate(updateCar);
+            array[4][0] = dtf.format(now);
+            array[4][1] = "An update on car table was made";
+            pr.println(Arrays.toString(array[4]));
             //add car to booked_cars
             ResultSet resultSet = this.statement.executeQuery("select * from booking where car_id =" + car_id.getText() + "");
+            array[5][0] = dtf.format(now);
+            array[5][1] = "A select from table booking was called using a car_id";
+            pr.println(Arrays.toString(array[5]));
             while (resultSet.next()) {
                 Booking booking = new Booking();
                 booking.setId(resultSet.getInt("id"));
                 String addToBooked_cars = "insert into booked_cars (booking_id, car_id, customer_id, end_date)"
                         + " values(" + booking.getId() + ", " + carId + ", " + customerId + ", '" + return_date.getValue() + "')";
                 this.statement.executeUpdate(addToBooked_cars);
+                array[6][0] = dtf.format(now);
+                array[6][1] = "An insert into booked_cars table was made";
+                pr.println(Arrays.toString(array[6]));
                 break;
             }
             resultSet.close();
             //delete car from available_cars
             String deletefromAvailable_cars = "DELETE FROM available_cars WHERE car_id=" + carId;
             this.statement.executeUpdate(deletefromAvailable_cars);
+            array[7][0] = dtf.format(now);
+            array[7][1] = "A delete on available_cars table was made";
+            pr.println(Arrays.toString(array[7]));
             if (addCustomer == 1 && addBooking == 1) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Car Booked");
@@ -440,13 +500,23 @@ public class rental_carController implements Initializable {
                 login_Pane.toFront();
                 booking_pane.setVisible(false);
             }
+            osw.close();
+            pr.flush();
+            pr.close();
         }
     }
 
-    private void selectAvailableCars() throws SQLException {
+    private void selectAvailableCars() throws SQLException, FileNotFoundException, IOException {
         AvailableCars availableCars = available_Cars_Table.getSelectionModel().getSelectedItem();
         if (availableCars != null) {
             ResultSet resultSet = this.statement.executeQuery("select * from Car where id =" + availableCars.getCarId() + "");
+            //store into the log file
+            FileOutputStream fos = new FileOutputStream(file, true);
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+            PrintWriter pr = new PrintWriter(osw);
+            array[8][0] = dtf.format(now);
+            array[8][1] = "A select from table Car was called using an id";
+            pr.println(Arrays.toString(array[8]));
             while (resultSet.next()) {
                 Car car = new Car();
                 car.setId(resultSet.getInt("id"));
@@ -467,6 +537,9 @@ public class rental_carController implements Initializable {
                 price_per_day.setText(String.valueOf(car.getPricePerDay()));
             }
             resultSet.close();
+            osw.close();
+            pr.flush();
+            pr.close();
             car_information_pane.setVisible(true);
             chooes_date_pane.setVisible(false);
             available_cars_pane.setVisible(false);
@@ -485,7 +558,7 @@ public class rental_carController implements Initializable {
         }
     }
 
-    private void checkBeforeGoToAVCar() throws SQLException {
+    private void checkBeforeGoToAVCar() throws SQLException, IOException {
         if (pickUp_date.getValue() == null || return_date.getValue() == null || total_Rent_Days.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -502,8 +575,15 @@ public class rental_carController implements Initializable {
         }
     }
 
-    private void showBookings() throws SQLException {
+    private void showBookings() throws SQLException, FileNotFoundException, IOException {
         ResultSet resultSet = this.statement.executeQuery("select * from booking");
+        //store into the log file
+        FileOutputStream fos = new FileOutputStream(file, true);
+        OutputStreamWriter osw = new OutputStreamWriter(fos);
+        PrintWriter pr = new PrintWriter(osw);
+        array[9][0] = dtf.format(now);
+        array[9][1] = "A select from table booking was called";
+        pr.println(Arrays.toString(array[9]));
         view_Bookings_Table.getItems().clear();
         List<Booking> bookings = new ArrayList<>();
         while (resultSet.next()) {
@@ -519,10 +599,13 @@ public class rental_carController implements Initializable {
             view_Bookings_Table.getItems().setAll(bookings);
         }
         resultSet.close();
+        osw.close();
+        pr.flush();
+        pr.close();
     }
 
     @FXML
-    private void hBox_Handle(MouseEvent event) throws SQLException {
+    private void hBox_Handle(MouseEvent event) throws SQLException, IOException {
         if (isAdmin) {
             if (event.getSource() == login_hbox) {
                 login_Pane.toFront();
@@ -665,11 +748,18 @@ public class rental_carController implements Initializable {
     }
 
     @FXML
-    private void update_Button_Handle(ActionEvent event) throws SQLException {
+    private void update_Button_Handle(ActionEvent event) throws SQLException, IOException {
         Booking booking = view_Bookings_Table.getSelectionModel().getSelectedItem();
         if (booking != null) {
             ResultSet resultSet = this.statement.executeQuery("SELECT car.id as id, car_id, customer_id, price_per_day FROM car "
                     + "Left JOIN booked_cars ON car.id = booked_cars.car_id ");
+            //store into the log file
+            FileOutputStream fos = new FileOutputStream(file, true);
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+            PrintWriter pr = new PrintWriter(osw);
+            array[10][0] = dtf.format(now);
+            array[10][1] = "A select and left join were called from tables car and booked_cars";
+            pr.println(Arrays.toString(array[10]));
             while (resultSet.next()) {
                 BookedCars bookedCars = new BookedCars();
                 Car car = new Car();
@@ -684,13 +774,22 @@ public class rental_carController implements Initializable {
                         //update customer
                         String updateCustomer = "UPDATE customer SET id= " + customer_id_update.getText() + " WHERE id=" + booking.getCustomerId();
                         this.statement.executeUpdate(updateCustomer);
+                        array[11][0] = dtf.format(now);
+                        array[11][1] = "An update on customer table was made using id";
+                        pr.println(Arrays.toString(array[11]));
                     }
                     String updateCar = "UPDATE booking SET pickup_date='" + picked_up_date_update.getValue() + "', return_date='" + return_date_update.getValue() + "',"
                             + " total_days_rent=" + total_days_rent_update.getText() + ", total_price=" + totalPrice + " WHERE id = " + id_update.getText();
                     this.statement.executeUpdate(updateCar);
+                    array[12][0] = dtf.format(now);
+                    array[12][1] = "An update on booking table was made using id";
+                    pr.println(Arrays.toString(array[12]));
                     //updateing booked_car
                     String updateBooked_car = "UPDATE booked_cars SET end_date='" + return_date_update.getValue() + "' WHERE booking_id = " + id_update.getText();
                     this.statement.executeUpdate(updateBooked_car);
+                    array[13][0] = dtf.format(now);
+                    array[13][1] = "An update on booked_cars table was made using id";
+                    pr.println(Arrays.toString(array[13]));
                     Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                     alert2.setTitle("Update");
                     alert2.setContentText("The update was successfully done");
@@ -714,35 +813,58 @@ public class rental_carController implements Initializable {
                     alert.setContentText("Are you sure that you want to change the car!");
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.get() == ButtonType.OK) {
-                        System.out.println("in");
                         if (!booking.getCustomerId().equals(Integer.parseInt(customer_id_update.getText()))) {
                             //update Customer
                             String updateCustomer = "UPDATE customer SET id= " + customer_id_update.getText() + " WHERE id=" + booking.getCustomerId();
                             this.statement.executeUpdate(updateCustomer);
+                            array[14][0] = dtf.format(now);
+                            array[14][1] = "An update on customer table was made using id";
+                            pr.println(Arrays.toString(array[14]));
                         }
                         //updateing car available to no
                         String updateCarAvailable = "UPDATE car SET available = 'no' WHERE id = " + car_id_update.getText();
                         this.statement.executeUpdate(updateCarAvailable);
+                        array[15][0] = dtf.format(now);
+                        array[15][1] = "An update on car table was made using id";
+                        pr.println(Arrays.toString(array[15]));
                         //updateing car available to yes
                         String updateCarAvailable2 = "UPDATE car SET available = 'yes' WHERE id = " + booking.getCarId();
                         this.statement.executeUpdate(updateCarAvailable2);
+                        array[16][0] = dtf.format(now);
+                        array[16][1] = "An update on car table was made using id";
+                        pr.println(Arrays.toString(array[16]));
                         //delete the old car from the booked_cars
                         String deletefromBooked_cars = "DELETE FROM booked_cars WHERE car_id=" + booking.getCarId();
                         this.statement.executeUpdate(deletefromBooked_cars);
+                        array[17][0] = dtf.format(now);
+                        array[17][1] = "A delete on booked_cars table was made using car_id";
+                        pr.println(Arrays.toString(array[17]));
                         //add new car to booked_cars
                         String addToBooked_cars = "insert into booked_cars (booking_id, car_id, customer_id, end_date)"
                                 + " values(" + booking.getId() + ", " + car_id_update.getText() + ", " + customer_id_update.getText() + ", '" + return_date_update.getValue() + "')";
                         this.statement.executeUpdate(addToBooked_cars);
+                        array[18][0] = dtf.format(now);
+                        array[18][1] = "An insert into booked_cars table was made";
+                        pr.println(Arrays.toString(array[18]));
                         //delete car from available_cars
                         String deletefromAvailable_cars = "DELETE FROM available_cars WHERE car_id=" + car_id_update.getText();
                         this.statement.executeUpdate(deletefromAvailable_cars);
+                        array[19][0] = dtf.format(now);
+                        array[19][1] = "A delete on available_cars table was made using car_id";
+                        pr.println(Arrays.toString(array[19]));
                         //add to available_cars
                         String addAvailable_cars = "insert into available_cars (car_id) values(" + booking.getCarId() + ")";
                         this.statement.executeUpdate(addAvailable_cars);
+                        array[20][0] = dtf.format(now);
+                        array[20][1] = "An insert into available_cars table was made";
+                        pr.println(Arrays.toString(array[20]));
                         //update booking
                         String updateCar = "UPDATE booking SET car_id= " + car_id_update.getText() + ", pickup_date='" + picked_up_date_update.getValue() + "', return_date='" + return_date_update.getValue() + "',"
                                 + " total_days_rent=" + total_days_rent_update.getText() + ", total_price=" + totalPrice + " WHERE id = " + id_update.getText();
                         this.statement.executeUpdate(updateCar);
+                        array[21][0] = dtf.format(now);
+                        array[21][1] = "An update on booking table was made using id";
+                        pr.println(Arrays.toString(array[21]));
                         Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                         alert2.setTitle("Update");
                         alert2.setContentText("The update was successfully done");
@@ -755,11 +877,14 @@ public class rental_carController implements Initializable {
                 }
             }
             resultSet.close();
+            osw.close();
+            pr.flush();
+            pr.close();
         }
     }
 
     @FXML
-    private void delete_Button_Handle(ActionEvent event) throws SQLException {
+    private void delete_Button_Handle(ActionEvent event) throws SQLException, IOException {
         Booking booking = view_Bookings_Table.getSelectionModel().getSelectedItem();
         if (booking != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -767,21 +892,40 @@ public class rental_carController implements Initializable {
             alert.setContentText("Are you sure that you want to delete this booking?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
+                //store into the log file
+                FileOutputStream fos = new FileOutputStream(file, true);
+                OutputStreamWriter osw = new OutputStreamWriter(fos);
+                PrintWriter pr = new PrintWriter(osw);
                 //updateing car available to yes
                 String updateCarAvailable = "UPDATE car SET available = 'yes' WHERE id = " + booking.getCarId();
                 this.statement.executeUpdate(updateCarAvailable);
+                array[22][0] = dtf.format(now);
+                array[22][1] = "An update on car table was made using id";
+                pr.println(Arrays.toString(array[22]));
                 //delete the old car from the booked_cars
                 String deletefromBooked_cars = "DELETE FROM booked_cars WHERE car_id=" + booking.getCarId();
                 this.statement.executeUpdate(deletefromBooked_cars);
+                array[23][0] = dtf.format(now);
+                array[23][1] = "A delete on booked_cars table was made using car_id";
+                pr.println(Arrays.toString(array[23]));
                 //add to available_cars
                 String addAvailable_cars = "insert into available_cars (car_id) values(" + booking.getCarId() + ")";
                 this.statement.executeUpdate(addAvailable_cars);
+                array[24][0] = dtf.format(now);
+                array[24][1] = "An insert into available_cars table was made";
+                pr.println(Arrays.toString(array[24]));
                 //deleteing Customer
                 String deleteCustomer = "DELETE FROM customer WHERE id=" + booking.getCustomerId();
                 this.statement.executeUpdate(deleteCustomer);
+                array[25][0] = dtf.format(now);
+                array[25][1] = "A delete on customer table was made using id";
+                pr.println(Arrays.toString(array[25]));
                 //deleteing booking
                 String deleteBooking = "DELETE FROM booking WHERE id=" + booking.getId();
                 this.statement.executeUpdate(deleteBooking);
+                array[26][0] = dtf.format(now);
+                array[26][1] = "A delete on booking table was made using id";
+                pr.println(Arrays.toString(array[26]));
                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                 alert2.setTitle("Delete");
                 alert2.setContentText("The delete was successfully done");
@@ -789,6 +933,9 @@ public class rental_carController implements Initializable {
                 showBookings();
                 showAvailableCar();
                 clearFields();
+                osw.close();
+                pr.flush();
+                pr.close();
             }
         }
     }
@@ -857,7 +1004,7 @@ public class rental_carController implements Initializable {
     }
 
     @FXML
-    private void add_newCar_Button_Handle(ActionEvent event) throws SQLException {
+    private void add_newCar_Button_Handle(ActionEvent event) throws SQLException, FileNotFoundException, IOException {
         if (id_addCar.getText().equals("") || model_addCar.getText().equals("") || brand_addCar.getText().equals("")
                 || color_addCar.getText().equals("") || number_of_doors_addCar.getText().equals("") || number_of_seats_addCar.getText().equals("")
                 || speed_addCar.getText().equals("") || price_per_day_addCar.getText().equals("")) {
@@ -866,14 +1013,24 @@ public class rental_carController implements Initializable {
             alert.setContentText("You can't add new car you should fill all the fields");
             alert.showAndWait();
         } else {
+            //store into the log file
+            FileOutputStream fos = new FileOutputStream(file, true);
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+            PrintWriter pr = new PrintWriter(osw);
             //add car
             String addNewCar = "insert into car values(" + id_addCar.getText() + ", '" + model_addCar.getText() + "', '" + brand_addCar.getText()
                     + "', " + number_of_doors_addCar.getText() + ", " + number_of_seats_addCar.getText() + ", '" + color_addCar.getText() + "'"
                     + ", " + speed_addCar.getText() + ", " + price_per_day_addCar.getText() + ", 'yes')";
             int addCar = this.statement.executeUpdate(addNewCar);
+            array[27][0] = dtf.format(now);
+            array[27][1] = "An insert into car table was made";
+            pr.println(Arrays.toString(array[27]));
             //add car to available_cars
             String addAvailable_cars = "insert into available_cars (car_id) values(" + id_addCar.getText() + ")";
             this.statement.executeUpdate(addAvailable_cars);
+            array[28][0] = dtf.format(now);
+            array[28][1] = "An insert into available_cars table was made";
+            pr.println(Arrays.toString(array[28]));
             showAvailableCar();
             if (addCar == 1) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -882,11 +1039,14 @@ public class rental_carController implements Initializable {
                 alert.showAndWait();
                 clearFields();
             }
+            osw.close();
+            pr.flush();
+            pr.close();
         }
     }
 
     @FXML
-    private void user_Button_Handle(ActionEvent event) {
+    private void user_Button_Handle(ActionEvent event) throws IOException {
         login_hbox.setStyle("-fx-background-color: none;");
         chooes_Date_hbox.setStyle("-fx-background-color: #c4dff6;");
         background_Image.setVisible(true);
@@ -898,5 +1058,34 @@ public class rental_carController implements Initializable {
         booking_pane.setVisible(false);
         view_Bookings_Pane.setVisible(false);
         add_Car_Pane.setVisible(false);
+        ifClosed();
+    }
+
+    private void beginLog() throws IOException {
+        FileOutputStream fos = new FileOutputStream(file, true);
+        OutputStreamWriter osw = new OutputStreamWriter(fos);
+        PrintWriter pr = new PrintWriter(osw);
+        pr.println("**connection with the database succeeded**");
+        pr.println("*transactions begin*");
+        osw.close();
+        pr.flush();
+        pr.close();
+    }
+
+    private void ifClosed() throws IOException {
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        FileOutputStream fos = new FileOutputStream(file, true);
+        OutputStreamWriter osw = new OutputStreamWriter(fos);
+        PrintWriter pr = new PrintWriter(osw);
+        stage.setOnCloseRequest((event) -> {
+            pr.println("*transactions end*");
+            try {
+                osw.close();
+            } catch (IOException ex) {
+                ex.getStackTrace();
+            }
+            pr.flush();
+            pr.close();
+        });
     }
 }
