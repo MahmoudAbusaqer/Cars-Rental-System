@@ -12,3 +12,10 @@ How Car Rental Services Work
 
 A car rental is a vehicle that can be used temporarily for a period of time with a fee. Renting a car assists people to get around even when they do not have access to their own personal vehicles or don't own a vehicle at all. Then he/she can use this system. At this point, this person has to supply some information such as dates of rental, and type of car. After these details are worked out, the individual renting the car must fill in his personal information so he can book the car.
 There are a lot of car options. And customers are free to choose any car of their choice based on their purse and availability of such a car at the time of reservation.
+
+What was implemented in this project:
+- CRUD operation and saved in a MySQL database using XAMPP and phpMyAdmin.
+- Appropriate collections and functional programming to process data.
+- All transactions done into the database must be saved into log file.
+- Apply object-oriented concepts.
+- A look-and-feel GUI using JavaFX.
